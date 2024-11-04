@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Header from "./components/Header";
-import Body from "./components/Body";
-import Footer from "./components/Footer";
-import About from "./components/About.js";
-import Contact from "./components/Contact.js";
-import Error from "./components/Error.js";
-import ResturantMenu from "./components/ResturentMenu.js";
+import Header from "./components/Header.jsx";
+import Body from "./components/Body.jsx";
+import Footer from "./components/Footer.jsx";
+import About from "./components/About.jsx";
+import Contact from "./components/Contact.jsx";
+import Error from "./components/Error.jsx";
+import ResturantMenu from "./components/ResturentMenu.jsx";
 import {createBrowserRouter , RouterProvider, Outlet} from "react-router-dom";
 
 
