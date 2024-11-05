@@ -1,31 +1,19 @@
-import { useState,useEffect } from "react";
-import { API_LINK } from "../utils/Images";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { IMAGE_ID, CLOUD_IMAGE,ALT_IMAGE } from "../utils/Images";
+import useResturentMenu from "../utils/useResturentMenu";
 
 
 const ResturantMenu = () =>{
 
-    const [resDetails , setResDetails] = useState(null);
+    
     const [showRes,setShowRes] = useState(false);
     const [img,setImg] = useState("fa fa-caret-up");
 
     const {Rid} = useParams();
+    const resDetails = useResturentMenu(Rid);
 
-    useEffect(()=>{
-        fetchData();
-        
-        return () => {
-        };
-
-    },[]);
-
-    const fetchData = async () =>{
-        const data = await fetch(API_LINK+Rid);
-        const json = await data.json();
-        setResDetails(json.data);
-    };
 
     if (resDetails==null) {
         return <Shimmer/>

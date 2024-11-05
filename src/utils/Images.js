@@ -8,3 +8,4 @@ export const API_LINK= "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_ME
 export const IMAGE_ID = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
 
 export const ALT_IMAGE = "https://media.istockphoto.com/id/1347698962/vector/kawaii-ramen.jpg?s=612x612&w=0&k=20&c=TJepAmsqF2KeB-d4uPgX9tdyPtvHvUsVYJCuKuG4nek=";
+

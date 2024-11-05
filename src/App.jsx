@@ -1,15 +1,17 @@
-import React from "react";
+import React,{lazy, Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Header from "./components/Header.jsx";
 import Body from "./components/Body.jsx";
 import Footer from "./components/Footer.jsx";
-import About from "./components/About.jsx";
-import Contact from "./components/Contact.jsx";
+//import About from "./components/About.jsx";
+//import Contact from "./components/Contact.jsx";
 import Error from "./components/Error.jsx";
 import ResturantMenu from "./components/ResturentMenu.jsx";
 import {createBrowserRouter , RouterProvider, Outlet} from "react-router-dom";
 
+const Contact = lazy( ()=>import("./components/Contact.jsx"));
+const About = lazy(()=>import("./components/About.jsx"));
 
 const AppLayout = () => {
     return(
@@ -32,11 +34,11 @@ const appRoute = createBrowserRouter([
             },
             {
                 path: "/About",
-                element: <About/>
+                element: <Suspense fallback={<h1>Loading....</h1>}><About/></Suspense>
             },
             {
                 path: "/Contact",
-                element: <Contact/>
+                element:<Suspense fallback={<h1>Loading....</h1>}><Contact/></Suspense> 
             },
             {
                 path: "/Restaurants/:Rid",

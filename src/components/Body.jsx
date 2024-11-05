@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { MAIN } from "../utils/Images";
+import useOnlineStat from "../utils/useOnlineStat";
+import OfflineMsg from "../utils/OfflineMsg";
 
 
 const Body = () =>{
 
+  const onlineStatus = useOnlineStat();
   const [listOfResturant , setlistOfResturant] = useState([]);
   const [filterList , setFilterList] = useState([]);
 
@@ -26,6 +29,11 @@ const Body = () =>{
     },0.9000);
     
   };
+
+  if(onlineStatus==false)
+  {
+    return <OfflineMsg/>;
+  }
 
     return listOfResturant==0 ? (<Shimmer/>) :
       ( <div className="body">
