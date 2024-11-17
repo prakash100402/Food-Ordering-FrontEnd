@@ -62,13 +62,14 @@ body {
   height: 400px;
   margin: 20px;
   text-align: center;
-  
+  z-index: 1;
 }
 
-.container:hover{
+.container:hover {
   box-shadow: 10px 10px 20px rgb(32, 32, 32);
   cursor: pointer;
   transform: scale(1.01);
+  
 }
 
 #h2t{

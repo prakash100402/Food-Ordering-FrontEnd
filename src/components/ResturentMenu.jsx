@@ -1,28 +1,24 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { IMAGE_ID, CLOUD_IMAGE,ALT_IMAGE } from "../utils/Images";
+import { CLOUD_IMAGE } from "../utils/Images";
 import useResturentMenu from "../utils/useResturentMenu";
+import ResturantCategory from "./ResturentCategory";
 
 
 const ResturantMenu = () =>{
 
-    
-    const [showRes,setShowRes] = useState(false);
-    const [img,setImg] = useState("fa fa-caret-up");
-
     const {Rid} = useParams();
     const resDetails = useResturentMenu(Rid);
-
+    
 
     if (resDetails==null) {
         return <Shimmer/>
     }
     
     const {name, costForTwoMessage,cloudinaryImageId ,avgRatingString, totalRatingsString,city} = resDetails?.cards[2]?.card?.card?.info;
-    const {title} = resDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-    const {itemCards} = resDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-
+    const category = resDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        (c)=>c?.card?.card?.["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
     return(
         <div className="mainrest">
@@ -38,41 +34,7 @@ const ResturantMenu = () =>{
                     <li>{totalRatingsString}</li>
                 </ul>
             </div>
-            <div className="title" onClick={()=>{
-                if(showRes==true)
-                {
-                    setShowRes(false);
-                    setImg("fa fa-caret-up")
-                }   
-                else
-                {
-                    setShowRes(true);
-                    setImg("fa fa-caret-down");
-                }
-                 
-            }}>
-                <h2 >{title}</h2>
-                <i className={img}></i>
-            </div>
-            {showRes && <div>
-                <ul className="listItem">
-                    {itemCards.map(item=><li className="listItem1">
-
-                        {<img className="limg" src={IMAGE_ID+item.card.info.imageId} alt="noIMG" onError={(e)=>{e.target.src=ALT_IMAGE}}/>} 
-                        <div className="br">
-                            <div>{item.card.info.name} </div>
-                            <div>{item.card.info.category}</div>
-                            <div className="space"></div>
-                            <div>Rs:{item.card.info.price/100}</div>
-                        </div>
-                        <div className="s"></div>
-                        <div className="right">
-                        <div className="rl">{item.card.info.ratings.aggregatedRating.rating} ★</div>
-                        </div>
-
-                    </li>)}
-                </ul>
-            </div>}
+            {category.map((cat)=> (<ResturantCategory key={cat?.card?.card?.title} data={cat?.card?.card} />))}
         </div>
     );
 };

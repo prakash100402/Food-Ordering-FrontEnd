@@ -24,4 +24,17 @@ const {lastMileTravelString, slaString} = resdata?.card?.card?.info?.sla;
     );
 };
 
+//higher order component
+export const withPromotedLable = (Container) =>
+{
+    return(props)=>{
+        return(
+            <div className="promot">
+                <label className="lable">Promoted</label>
+                <Container {...props}/>
+            </div>
+        );
+    };
+};
+
 export default Container;

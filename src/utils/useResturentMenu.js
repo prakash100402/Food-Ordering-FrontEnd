@@ -14,6 +14,7 @@ const useResturentMenu = (Rid) => {
         const data = await fetch(API_LINK+Rid);
         const json = await data.json();
         setResDetails(json.data);
+        
     };
 
     return resDetails;

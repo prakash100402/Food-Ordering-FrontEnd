@@ -1,4 +1,4 @@
-import Container from "./Container";
+import Container,{withPromotedLable} from "./Container";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ const Body = () =>{
   const [listOfResturant , setlistOfResturant] = useState([]);
   const [filterList , setFilterList] = useState([]);
 
+  const ResturantCardPromoted = withPromotedLable(Container);
+
   const [search,setSearch] = useState("");
 
   useEffect(()=>{
@@ -22,7 +24,6 @@ const Body = () =>{
   const fetchData = async()=>{
     const data = await fetch(MAIN);
     const json = await data.json();
-    console.log(json);
     setTimeout(()=>{
       setlistOfResturant(json);
       setFilterList(json);
@@ -55,7 +56,11 @@ const Body = () =>{
             
             <div className="cardContainer">
               {
-                filterList.map((resturant) =>(<Link className="no" key={resturant?.card?.card?.info?.id} to={"/restaurants/"+resturant?.card?.card?.info?.id}><Container resdata={resturant}/></Link>))
+                filterList.map((resturant) =>(<Link className="no" key={resturant?.card?.card?.info?.id} to={"/restaurants/"+resturant?.card?.card?.info?.id}>
+                  {
+                    resturant?.card?.card?.info?.promoted ? <ResturantCardPromoted resdata={resturant}/> : <Container resdata={resturant}/>
+                  }
+                </Link>))
               }
             </div>
         </div>
