@@ -9,3 +9,7 @@ export const IMAGE_ID = "https://media-assets.swiggy.com/swiggy/image/upload/fl_
 
 export const ALT_IMAGE = "https://media.istockphoto.com/id/1347698962/vector/kawaii-ramen.jpg?s=612x612&w=0&k=20&c=TJepAmsqF2KeB-d4uPgX9tdyPtvHvUsVYJCuKuG4nek=";
 
+export const EmptyCartLogo = "https://cdn-icons-png.flaticon.com/512/2762/2762885.png";
+
+export const CLEAR_CART = "https://cdn-icons-png.flaticon.com/512/8997/8997755.png";
+

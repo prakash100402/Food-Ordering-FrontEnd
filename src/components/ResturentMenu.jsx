@@ -3,12 +3,15 @@ import Shimmer from "./Shimmer";
 import { CLOUD_IMAGE } from "../utils/Images";
 import useResturentMenu from "../utils/useResturentMenu";
 import ResturantCategory from "./ResturentCategory";
+import { useState } from "react";
 
 
 const ResturantMenu = () =>{
 
     const {Rid} = useParams();
     const resDetails = useResturentMenu(Rid);
+
+    const [showIndex, setShowIndex] = useState(null);
     
 
     if (resDetails==null) {
@@ -33,8 +36,16 @@ const ResturantMenu = () =>{
                     <li className="rl">{avgRatingString} ★</li>
                     <li>{totalRatingsString}</li>
                 </ul>
-            </div>
-            {category.map((cat)=> (<ResturantCategory key={cat?.card?.card?.title} data={cat?.card?.card} />))}
+            </div >
+            {
+                category.map((cat, index)=> (
+                    <ResturantCategory key={cat?.card?.card?.title} 
+                    data={cat?.card?.card}
+                    showIndex={index===showIndex} 
+                    img={index===showIndex ? ("fa fa-caret-down") : ("fa fa-caret-up")}
+                    setShowIndex={()=> setShowIndex(index===showIndex ? null : index)} />
+                ))
+            }
         </div>
     );
 };

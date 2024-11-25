@@ -20,6 +20,7 @@ const {lastMileTravelString, slaString} = resdata?.card?.card?.info?.sla;
                 </ul>
             </div>
             <h5>Distance: {lastMileTravelString}</h5>
+            
         </div>
     );
 };
